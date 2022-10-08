@@ -1,21 +1,27 @@
 import styled from 'styled-components';
 import { SecondaryButton } from '../atoms/button/SecondaryButton';
 import { useHistory } from 'react-router-dom';
+import { useContext } from 'react';
+import { UserContext } from '../../providers/UserProvider';
 
 export const Top = () => {
   const history = useHistory();
+  const { setUserInfo } = useContext(UserContext);
 
-  // ボタン押下時に画面遷移する処理(useHistoryを使って、stateを渡す)
   // ----------
   // 管理者ボタン押下時の処理
   // ----------
-  const onClickAdmin = () =>
-    history.push({ pathname: '/users', state: { isAdmin: true } });
+  const onClickAdmin = () => {
+    setUserInfo({ isAdmin: true });
+    history.push({ pathname: '/users' });
+  };
   // ----------
   // 一般ボタン押下時の処理
   // ----------
-  const onClickGeneral = () =>
-    history.push({ pathname: '/users', state: { isAdmin: false } });
+  const onClickGeneral = () => {
+    setUserInfo({ isAdmin: false });
+    history.push({ pathname: '/users' });
+  };
 
   return (
     <SContainer>
