@@ -4,6 +4,8 @@ import { UserContext } from '../../providers/UserProvider';
 import { SecondaryButton } from '../atoms/button/SecondaryButton';
 import { SearchInput } from '../molecules/SearchInput';
 import { UserCard } from '../organisms/user/UserCard';
+import { useRecoilState } from 'recoil';
+import { userState } from '../../store/userState';
 
 const users = [...Array(10).keys()].map((val) => {
   return {
@@ -20,8 +22,12 @@ const users = [...Array(10).keys()].map((val) => {
 });
 
 export const Users = () => {
-  // グローバルなstateを取得
-  const { userInfo, setUserInfo } = useContext(UserContext);
+  // contextによる状態管理
+  // const { userInfo, setUserInfo } = useContext(UserContext);
+
+  // recoilによる状態管理
+  const [userInfo, setUserInfo] = useRecoilState(userState);
+
   // ----------
   //ユーザー切り替えボタン押下時の処理
   // ----------
