@@ -1,2 +1,2 @@
-# react-global-state
+# Atomic-Design-Practice
 Created with CodeSandbox
